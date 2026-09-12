@@ -1,0 +1,18 @@
+@detectDelim
+
+@top Document { Node+ }
+
+Node { Header Block? }
+
+Header { Name Range }
+
+Block { "{" Node* "}" }
+
+@skip { space }
+
+@tokens {
+  space { $[ \t\n\r]+ }
+  Range { "[" $[0-9]+ "-" $[0-9]+ "]" }
+  Name { ![ \t\n\r\[{}]+ }
+  "{" "}"
+}

@@ -1,0 +1,35 @@
+name: Update reference language packages
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v4.4.0
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm add @lezer/python@latest @lezer/json@latest @lezer/java@latest
+
+      - run: pnpm build
+
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          title: 'chore: bump reference language packages'
+          branch: bump-reference-languages
+          commit-message: 'chore: bump @lezer/python, @lezer/json, @lezer/java'
