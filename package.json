@@ -22,7 +22,7 @@
     "@lezer/common": "^1.5.2",
     "@lezer/generator": "^1.8.0",
     "@lezer/highlight": "^1.2.3",
-    "@lezer/java": "^1.1.4",
+    "@lezer/java": "^1.1.5",
     "@lezer/javascript": "^1.5.4",
     "@lezer/json": "^1.0.3",
     "@lezer/lezer": "^1.1.3",
